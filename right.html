@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bootstrap Collapsible Right Sidebar</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<style>
+		html,
+		body {
+			height: 100%;
+		}
+		.jumbotron {
+			margin-top: 30px;
+		}
+		#content,
+		#sidebar {
+			min-height: 500px;
+		}
+		#row-main {
+			overflow-x: hidden; /* necessary to hide collapsed sidebar */
+		}
+		#content {
+			background-color: lightyellow;
+			
+			-webkit-transition: width 0.3s ease;
+			-moz-transition: width 0.3s ease;
+			-o-transition: width 0.3s ease;
+			transition: width 0.3s ease;
+		}
+		#content .btn-group {
+			margin-bottom: 10px;
+		}
+		.col-md-9 .width-12,
+		.col-md-12 .width-9 {
+			display: none; /* just hiding labels for demo purposes */
+		}
+		#sidebar {
+			background-color: lightgrey;
+			
+			-webkit-transition: margin 0.3s ease;
+			-moz-transition: margin 0.3s ease;
+			-o-transition: margin 0.3s ease;
+			transition: margin 0.3s ease;
+		}
+		.collapsed {
+			display: none; /* hide it for small displays */
+		}
+		@media (min-width: 992px) {
+			.collapsed {
+				display: block;
+				margin-right: -25%; /* same width as sidebar */
+			}
+		}
+	</style>
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="jumbotron">
+					<h1>Bootstrap Collapsible Right Sidebar</h1>
+					<p>Using the Bootstrap grid system, some CSS and a little jQuery to create a collapsible sidebar.</p>
+				</div>
+			</div>
+		</div>
+		<div class="row" id="row-main">
+			<div class="col-md-9" id="content">
+				<h3><code>#content</code> <code class="width-9">.col-md-9</code> <code class="width-12">.col-md-12</code></h3>
+				<div class="btn-group" role="group" aria-label="Controls">
+					<button type="button" class="btn btn-default toggle-sidebar">Toggle sidebar</button>
+				</div>
+				<p>Changes from <code>.col-md-9</code> to <code>.col-md-12</code> when the sidebar is collapsed, occupying the remaining space.</p>
+				<pre>#row-main {
+  <span class="text-muted">/* necessary to hide collapsed sidebar */</span>
+  overflow-x: hidden;
+}
+
+#content {
+  <span class="text-muted">/* for the animation */</span>
+  transition: width 0.3s ease;
+}</pre>
+				<pre><span class="text-muted">/* to toggle the sidebar, just switch the CSS classes */</span>
+$("#sidebar").toggleClass("collapsed");
+$("#content").toggleClass("col-md-12 col-md-9");</pre>
+			</div>
+			<div class="col-md-3" id="sidebar">
+				<h3><code>#sidebar</code> <code>.col-md-3</code></h3>
+				<p>Has a negative right margin when collapsed.</p>
+				<pre>#sidebar {
+  <span class="text-muted">/* for the animation */</span>
+  transition: margin 0.3s ease;
+}
+
+.collapsed {
+  <span class="text-muted">/* hide it for small displays*/</span>
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .collapsed {
+    display: block;
+    <span class="text-muted">/* same width as sidebar */</span>
+    margin-right: -25%;
+  }
+}</pre>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$(".toggle-sidebar").click(function () {
+				$("#sidebar").toggleClass("collapsed");
+				$("#content").toggleClass("col-md-12 col-md-9");
+				
+				return false;
+			});
+		});
+	</script>
+</body>
+
+</html>
